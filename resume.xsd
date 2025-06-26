@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <!-- Root Element -->
+    <xs:element name="resume" type="ResumeType"/>
+
+    <!-- Complex Types -->
+    <xs:complexType name="ResumeType">
+        <xs:sequence>
+            <xs:element name="personalInfo" type="PersonalInfoType"/>
+            <xs:element name="summary" type="xs:string"/>
+            <xs:element name="skills" type="SkillsType"/>
+            <xs:element name="education" type="EducationType"/>
+            <xs:element name="experience" type="ExperienceType"/>
+            <xs:element name="volunteerExperience" type="VolunteerExperienceType" minOccurs="0"/>
+            <xs:element name="languages" type="LanguagesType"/>
+            <xs:element name="references" type="ReferencesType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Personal Information Types -->
+    <xs:complexType name="PersonalInfoType">
+        <xs:sequence>
+            <xs:element name="fullName" type="xs:string"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="contact" type="ContactType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ContactType">
+        <xs:sequence>
+            <xs:element name="phone" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="address" type="AddressType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AddressType">
+        <xs:sequence>
+            <xs:element name="city" type="xs:string"/>
+            <xs:element name="country" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Skills Types -->
+    <xs:complexType name="SkillsType">
+        <xs:sequence>
+            <xs:element name="skillCategory" type="SkillCategoryType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SkillCategoryType">
+        <xs:sequence>
+            <xs:element name="skill" type="SkillType" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="SkillType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="level" type="SkillLevelType" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!-- Education Types -->
+    <xs:complexType name="EducationType">
+        <xs:sequence>
+            <xs:element name="degree" type="DegreeType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DegreeType">
+        <xs:sequence>
+            <xs:element name="level" type="DegreeLevelType"/>
+            <xs:element name="field" type="xs:string"/>
+            <xs:element name="institution" type="xs:string"/>
+            <xs:element name="graduationDate" type="xs:date"/>
+            <xs:element name="startDate" type="xs:date"/>
+            <xs:element name="location" type="AddressType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Experience Types -->
+    <xs:complexType name="ExperienceType">
+        <xs:sequence>
+            <xs:element name="job" type="JobType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="JobType">
+        <xs:sequence>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="company" type="xs:string"/>
+            <xs:element name="employmentType" type="EmploymentTypeEnum"/>
+            <xs:element name="startDate" type="xs:date"/>
+            <xs:element name="endDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="location" type="AddressType"/>
+            <xs:element name="responsibilities" type="ResponsibilitiesType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ResponsibilitiesType">
+        <xs:sequence>
+            <xs:element name="responsibility" type="xs:string" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Volunteer Experience Types -->
+    <xs:complexType name="VolunteerExperienceType">
+        <xs:sequence>
+            <xs:element name="volunteer" type="VolunteerType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VolunteerType">
+        <xs:sequence>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="organization" type="xs:string"/>
+            <xs:element name="startDate" type="xs:date"/>
+            <xs:element name="endDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="location" type="AddressType"/>
+            <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Languages Types -->
+    <xs:complexType name="LanguagesType">
+        <xs:sequence>
+            <xs:element name="language" type="LanguageType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LanguageType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="proficiency" type="ProficiencyLevelType" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!-- References Types -->
+    <xs:complexType name="ReferencesType">
+        <xs:sequence>
+            <xs:element name="reference" type="ReferenceType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ReferenceType">
+        <xs:all>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="email" type="xs:string" minOccurs="0"/>
+            <xs:element name="phone" type="xs:string" minOccurs="0"/>
+            <xs:element name="organization" type="xs:string" minOccurs="0"/>
+            <xs:element name="relationship" type="xs:string"/>
+        </xs:all>
+    </xs:complexType>
+
+    <!-- Simple Types and Enumerations -->
+    <xs:simpleType name="SkillLevelType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="beginner"/>
+            <xs:enumeration value="intermediate"/>
+            <xs:enumeration value="advanced"/>
+            <xs:enumeration value="expert"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="DegreeLevelType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="High School"/>
+            <xs:enumeration value="Associate"/>
+            <xs:enumeration value="Bachelor"/>
+            <xs:enumeration value="Master"/>
+            <xs:enumeration value="Doctorate"/>
+            <xs:enumeration value="Certificate"/>
+            <xs:enumeration value="Diploma"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="EmploymentTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Full-Time"/>
+            <xs:enumeration value="Part-Time"/>
+            <xs:enumeration value="Contract"/>
+            <xs:enumeration value="Freelance"/>
+            <xs:enumeration value="Internship"/>
+            <xs:enumeration value="Temporary"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ProficiencyLevelType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="basic"/>
+            <xs:enumeration value="conversational"/>
+            <xs:enumeration value="fluent"/>
+            <xs:enumeration value="native"/>
+            <xs:enumeration value="professional"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

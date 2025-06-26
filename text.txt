@@ -1,0 +1,15 @@
+we are working on n XML project:
+
+6. CV/Resume in XML
+
+ Goal: Build a professional resume using structured XML and XSD
+
+ Tools:
+
+o VS Code
+
+o XML Notepad (by Microsoft)
+
+o Online XSD tools to validate email and date formats
+
+after generting all project files we also need a report with images or plcae holeder for images  u cna follow the sample resume past1, also we be using VS code as the main editor, make sure slltest cases are covered both for validation and corretness and also try application usage with erro flags whe vilated 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ERROR TEST CASE: Missing Required Elements - Should Fail Validation -->
+<resume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="resume.xsd">
+    <personalInfo>
+        <fullName>Test User</fullName>
+        <title>Software Developer</title>
+        <contact>
+            <phone>+1-555-123-4567</phone>
+            <email>test@example.com</email>
+            <!-- MISSING: address element is required -->
+        </contact>
+    </personalInfo>
+    <summary>Test resume with missing required elements.</summary>
+    <skills>
+        <skillCategory name="Programming">
+            <skill level="advanced">Java</skill>
+        </skillCategory>
+    </skills>
+    <!-- MISSING: education element is required -->
+    <experience>
+        <job>
+            <title>Software Developer</title>
+            <company>Tech Corp</company>
+            <employmentType>Full-Time</employmentType>
+            <startDate>2020-06-01</startDate>
+            <location>
+                <city>San Francisco</city>
+                <country>USA</country>
+            </location>
+            <responsibilities>
+                <responsibility>Developed web applications</responsibility>
+            </responsibilities>
+        </job>
+    </experience>
+    <!-- MISSING: languages element is required -->
+</resume>

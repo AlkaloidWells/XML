@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Resume Viewer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header h2 {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .skill-category h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+
+        .skill-level {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .skill-level.advanced { background: #27ae60; color: white; }
+        .skill-level.intermediate { background: #f39c12; color: white; }
+        .skill-level.beginner { background: #95a5a6; color: white; }
+        .skill-level.expert { background: #8e44ad; color: white; }
+
+        .job, .degree, .volunteer {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+
+        .job-header, .degree-header, .volunteer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .job-title, .degree-title, .volunteer-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .company, .institution, .organization {
+            font-size: 1.1em;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+
+        .duration, .location {
+            color: #95a5a6;
+            font-size: 0.9em;
+        }
+
+        .responsibilities {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .responsibilities li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .responsibilities li:before {
+            content: "▸";
+            color: #3498db;
+            position: absolute;
+            left: 0;
+        }
+
+        .languages, .references {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .language-item, .reference-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .proficiency {
+            background: #3498db;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-top: 5px;
+            display: inline-block;
+        }
+
+        .file-input {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 1em;
+        }
+
+        .file-input:hover {
+            background: #2980b9;
+        }
+
+        .error {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .contact-info { flex-direction: column; gap: 10px; }
+            .job-header, .degree-header { flex-direction: column; }
+            .content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>XML Resume Viewer</h1>
+            <p>Load and display XML resume files</p>
+            <div style="margin-top: 20px;">
+                <input type="file" id="xmlFile" accept=".xml" style="display: none;">
+                <button class="file-input" onclick="document.getElementById('xmlFile').click();">
+                    📄 Load XML Resume
+                </button>
+            </div>
+        </div>
+
+        <div class="content" id="content">
+            <div class="loading">
+                <h3>👆 Click "Load XML Resume" to view a resume</h3>
+                <p>Select an XML resume file that conforms to our resume.xsd schema</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('xmlFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const xmlText = e.target.result;
+                        const parser = new DOMParser();
+                        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+                        
+                        // Check for parsing errors
+                        const parseError = xmlDoc.querySelector('parsererror');
+                        if (parseError) {
+                            throw new Error('XML parsing error: ' + parseError.textContent);
+                        }
+                        
+                        displayResume(xmlDoc);
+                    } catch (error) {
+                        displayError('Error loading XML file: ' + error.message);
+                    }
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        function displayError(message) {
+            document.getElementById('content').innerHTML = `
+                <div class="error">
+                    <h3>❌ Error</h3>
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+
+        function getTextContent(element, selector) {
+            const el = element.querySelector(selector);
+            return el ? el.textContent.trim() : 'N/A';
+        }
+
+        function displayResume(xmlDoc) {
+            const resume = xmlDoc.querySelector('resume');
+            if (!resume) {
+                displayError('Invalid XML: No resume element found');
+                return;
+            }
+
+            // Extract data
+            const personalInfo = resume.querySelector('personalInfo');
+            const fullName = getTextContent(personalInfo, 'fullName');
+            const title = getTextContent(personalInfo, 'title');
+            const phone = getTextContent(personalInfo, 'contact phone');
+            const email = getTextContent(personalInfo, 'contact email');
+            const city = getTextContent(personalInfo, 'contact address city');
+            const country = getTextContent(personalInfo, 'contact address country');
+            const summary = getTextContent(resume, 'summary');
+
+            // Build HTML
+            let html = `
+                <div class="header">
+                    <h1>${fullName}</h1>
+                    <h2>${title}</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">📧 ${email}</div>
+                        <div class="contact-item">📱 ${phone}</div>
+                        <div class="contact-item">📍 ${city}, ${country}</div>
+                    </div>
+                </div>
+                <div style="padding: 40px;">
+            `;
+
+            // Summary
+            if (summary !== 'N/A') {
+                html += `
+                    <div class="section">
+                        <h3 class="section-title">Professional Summary</h3>
+                        <div class="summary">${summary}</div>
+                    </div>
+                `;
+            }
+
+            // Skills
+            const skillCategories = resume.querySelectorAll('skills skillCategory');
+            if (skillCategories.length > 0) {
+                html += `
+                    <div class="section">
+                        <h3 class="section-title">Skills</h3>
+                        <div class="skills-grid">
+                `;
+                
+                skillCategories.forEach(category => {
+                    const categoryName = category.getAttribute('name');
+                    html += `<div class="skill-category"><h4>${categoryName}</h4>`;
+                    
+                    const skills = category.querySelectorAll('skill');
+                    skills.forEach(skill => {
+                        const skillName = skill.textContent.trim();
+                        const level = skill.getAttribute('level');
+                        html += `
+                            <div class="skill-item">
+                                <span>${skillName}</span>
+                                <span class="skill-level ${level}">${level}</span>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `</div>`;
+                });
+                
+                html += `</div></div>`;
+            }
+
+            // Experience
+            const jobs = resume.querySelectorAll('experience job');
+            if (jobs.length > 0) {
+                html += `
+                    <div class="section">
+                        <h3 class="section-title">Professional Experience</h3>
+                `;
+                
+                jobs.forEach(job => {
+                    const jobTitle = getTextContent(job, 'title');
+                    const company = getTextContent(job, 'company');
+                    const employmentType = getTextContent(job, 'employmentType');
+                    const startDate = getTextContent(job, 'startDate');
+                    const endDate = getTextContent(job, 'endDate');
+                    const jobCity = getTextContent(job, 'location city');
+                    const jobCountry = getTextContent(job, 'location country');
+                    
+                    html += `
+                        <div class="job">
+                            <div class="job-header">
+                                <div>
+                                    <div class="job-title">${jobTitle}</div>
+                                    <div class="company">${company} (${employmentType})</div>
+                                    <div class="location">${jobCity}, ${jobCountry}</div>
+                                </div>
+                                <div class="duration">${startDate} - ${endDate || 'Present'}</div>
+                            </div>
+                            <ul class="responsibilities">
+                    `;
+                    
+                    const responsibilities = job.querySelectorAll('responsibilities responsibility');
+                    responsibilities.forEach(resp => {
+                        html += `<li>${resp.textContent.trim()}</li>`;
+                    });
+                    
+                    html += `</ul></div>`;
+                });
+                
+                html += `</div>`;
+            }
+
+            // Education
+            const degrees = resume.querySelectorAll('education degree');
+            if (degrees.length > 0) {
+                html += `
+                    <div class="section">
+                        <h3 class="section-title">Education</h3>
+                `;
+                
+                degrees.forEach(degree => {
+                    const level = getTextContent(degree, 'level');
+                    const field = getTextContent(degree, 'field');
+                    const institution = getTextContent(degree, 'institution');
+                    const gradDate = getTextContent(degree, 'graduationDate');
+                    const startDate = getTextContent(degree, 'startDate');
+                    const eduCity = getTextContent(degree, 'location city');
+                    const eduCountry = getTextContent(degree, 'location country');
+                    
+                    html += `
+                        <div class="degree">
+                            <div class="degree-header">
+                                <div>
+                                    <div class="degree-title">${level} in ${field}</div>
+                                    <div class="institution">${institution}</div>
+                                    <div class="location">${eduCity}, ${eduCountry}</div>
+                                </div>
+                                <div class="duration">${startDate} - ${gradDate}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += `</div>`;
+            }
+
+            // Languages
+            const languages = resume.querySelectorAll('languages language');
+            if (languages.length > 0) {
+                html += `
+                    <div class="section">
+                        <h3 class="section-title">Languages</h3>
+                        <div class="languages">
+                `;
+                
+                languages.forEach(lang => {
+                    const langName = lang.textContent.trim();
+                    const proficiency = lang.getAttribute('proficiency');
+                    html += `
+                        <div class="language-item">
+                            <strong>${langName}</strong>
+                            <div class="proficiency">${proficiency}</div>
+                        </div>
+                    `;
+                });
+                
+                html += `</div></div>`;
+            }
+
+            html += `</div>`;
+            
+            document.getElementById('content').innerHTML = html;
+        }
+    </script>
+</body>
+</html>

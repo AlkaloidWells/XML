@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="resume.xsd">
+    
+    <!-- Personal Information Section -->
+    <personalInfo>
+        <fullName>Ayamba OJong</fullName>
+        <title>Store Keeper &amp; Inventory Management Specialist</title>
+        <contact>
+            <phone>+971-564214370</phone>
+            <email>alkaliod111@gmail.com</email>
+            <address>
+                <city>Buea SW</city>
+                <country>Cameroon</country>
+            </address>
+        </contact>
+    </personalInfo>
+
+    <!-- Professional Summary -->
+    <summary>
+        Detail-oriented Computer Engineer with 4+ years of experience in systems monitoring and data management seeking to apply technical expertise to warehouse operations and inventory management. Proven track record in maintaining organized documentation systems, implementing efficient workflows, and resolving technical issues in fast-paced environments. Skilled in utilizing software tools for real-time tracking and reporting, with strong abilities in team coordination and process optimization. Dedicated to maintaining accurate records, ensuring operational compliance, and driving continuous improvement in inventory control procedures while supporting overall supply chain efficiency.
+    </summary>
+
+    <!-- Skills Section -->
+    <skills>
+        <skillCategory name="Technical Skills">
+            <skill level="advanced">Inventory Tracking &amp; Management</skill>
+            <skill level="advanced">System &amp; Stock Monitoring</skill>
+            <skill level="advanced">Data Management &amp; Documentation</skill>
+            <skill level="advanced">Microsoft Office Suite (Word, Excel, Outlook)</skill>
+            <skill level="intermediate">Warehouse Management Software</skill>
+            <skill level="intermediate">Equipment Maintenance Coordination</skill>
+            <skill level="intermediate">Security &amp; Access Control Systems</skill>
+        </skillCategory>
+        <skillCategory name="Core Competencies">
+            <skill level="advanced">Data Entry &amp; Record Keeping</skill>
+            <skill level="advanced">Report Generation &amp; Analysis</skill>
+            <skill level="intermediate">Technical Troubleshooting &amp; Problem Resolution</skill>
+            <skill level="intermediate">Team Supervision &amp; Training</skill>
+            <skill level="advanced">Clear Communication &amp; Documentation</skill>
+        </skillCategory>
+        <skillCategory name="Soft Skills">
+            <skill level="advanced">Attention to Detail</skill>
+            <skill level="advanced">Time Management &amp; Prioritization</skill>
+            <skill level="advanced">Multi-tasking in Fast-paced Environments</skill>
+            <skill level="intermediate">Cross-departmental Collaboration</skill>
+            <skill level="advanced">Problem-solving &amp; Decision-making</skill>
+        </skillCategory>
+    </skills>
+
+    <!-- Education Section -->
+    <education>
+        <degree>
+            <level>Bachelor</level>
+            <field>Computer Engineering</field>
+            <institution>University of Buea</institution>
+            <graduationDate>2024-07-31</graduationDate>
+            <startDate>2020-10-01</startDate>
+            <location>
+                <city>Buea</city>
+                <country>Cameroon</country>
+            </location>
+        </degree>
+    </education>
+
+    <!-- Professional Experience -->
+    <experience>
+        <job>
+            <title>Store Keeper &amp; Inventory Specialist</title>
+            <company>MACBICOL Secondary School</company>
+            <employmentType>Part-Time</employmentType>
+            <startDate>2023-09-01</startDate>
+            <endDate>2024-08-31</endDate>
+            <location>
+                <city>Buea</city>
+                <country>Cameroon</country>
+            </location>
+            <responsibilities>
+                <responsibility>Managed inventory of school supplies and equipment, ensuring proper stock levels to meet educational needs</responsibility>
+                <responsibility>Implemented organized storage systems for various materials, improving retrieval efficiency by 25%</responsibility>
+                <responsibility>Maintained detailed records of incoming and outgoing items using digital tracking systems</responsibility>
+                <responsibility>Conducted regular inventory audits and reconciliations to prevent shortages and discrepancies</responsibility>
+            </responsibilities>
+        </job>
+        
+        <job>
+            <title>Buyam Warehouse Keeper</title>
+            <company>Buyam Cameroon</company>
+            <employmentType>Part-Time</employmentType>
+            <startDate>2023-11-01</startDate>
+            <endDate>2024-07-31</endDate>
+            <location>
+                <city>Buea</city>
+                <country>Cameroon</country>
+            </location>
+            <responsibilities>
+                <responsibility>Created and maintained detailed documentation and tracking systems</responsibility>
+                <responsibility>Enforced security measures to safeguard sensitive organizational data from potential threats</responsibility>
+                <responsibility>Trained colleagues on safety procedures and managed physical assets</responsibility>
+            </responsibilities>
+        </job>
+
+        <job>
+            <title>Inventory Management Specialist</title>
+            <company>Codexbase Network</company>
+            <employmentType>Part-Time</employmentType>
+            <startDate>2022-09-01</startDate>
+            <endDate>2023-08-31</endDate>
+            <location>
+                <city>Buea</city>
+                <country>Cameroon</country>
+            </location>
+            <responsibilities>
+                <responsibility>Managed comprehensive inventory tracking system for educational supplies and equipment</responsibility>
+                <responsibility>Developed and maintained detailed documentation of stock movement and usage patterns</responsibility>
+            </responsibilities>
+        </job>
+    </experience>
+
+    <!-- Volunteer Experience -->
+    <volunteerExperience>
+        <volunteer>
+            <title>Computer Science Teacher</title>
+            <organization>Government High School Buea</organization>
+            <startDate>2022-09-01</startDate>
+            <endDate>2024-02-28</endDate>
+            <location>
+                <city>Buea</city>
+                <country>Cameroon</country>
+            </location>
+            <description>Volunteered as Computer Science teacher, contributing to educational development in the community</description>
+        </volunteer>
+    </volunteerExperience>
+
+    <!-- Languages -->
+    <languages>
+        <language proficiency="native">English</language>
+    </languages>
+
+    <!-- References -->
+    <references>
+        <reference>
+            <name>Mr. Waba</name>
+            <email>w4b4n4sjr@gmail.com</email>
+            <phone>+237-74104216</phone>
+            <relationship>Professional Reference</relationship>
+        </reference>
+        <reference>
+            <name>Mr. Nelson</name>
+            <organization>Survey School</organization>
+            <phone>+237-697500346</phone>
+            <relationship>Professional Reference</relationship>
+        </reference>
+    </references>
+
+</resume>

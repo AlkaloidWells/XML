@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ERROR TEST CASE: Invalid Skill Level - Should Fail Validation -->
+<resume xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="resume.xsd">
+    <personalInfo>
+        <fullName>Test User</fullName>
+        <title>Software Developer</title>
+        <contact>
+            <phone>+1-555-123-4567</phone>
+            <email>test@example.com</email>
+            <address>
+                <city>New York</city>
+                <country>USA</country>
+            </address>
+        </contact>
+    </personalInfo>
+    <summary>Test resume with invalid skill level.</summary>
+    <skills>
+        <skillCategory name="Programming">
+            <!-- INVALID SKILL LEVEL: "master" is not in the enumeration -->
+            <skill level="master">Java</skill>
+            <skill level="intermediate">Python</skill>
+        </skillCategory>
+    </skills>
+    <education>
+        <degree>
+            <level>Bachelor</level>
+            <field>Computer Science</field>
+            <institution>Test University</institution>
+            <graduationDate>2020-05-15</graduationDate>
+            <startDate>2016-09-01</startDate>
+            <location>
+                <city>Boston</city>
+                <country>USA</country>
+            </location>
+        </degree>
+    </education>
+    <experience>
+        <job>
+            <title>Software Developer</title>
+            <company>Tech Corp</company>
+            <employmentType>Full-Time</employmentType>
+            <startDate>2020-06-01</startDate>
+            <location>
+                <city>San Francisco</city>
+                <country>USA</country>
+            </location>
+            <responsibilities>
+                <responsibility>Developed web applications</responsibility>
+            </responsibilities>
+        </job>
+    </experience>
+    <languages>
+        <language proficiency="native">English</language>
+    </languages>
+</resume>
