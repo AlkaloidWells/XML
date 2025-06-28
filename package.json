@@ -1,0 +1,15 @@
+{
+  "name": "xml",
+  "version": "1.0.0",
+  "description": "XML Resume Validation and Viewer System",
+  "main": "validate-resume.js",
+  "scripts": {
+    "test": "node validate-resume.js"
+  },
+  "dependencies": {
+    "xmldom": "^0.6.0",
+    "xpath": "^0.0.32"
+  },
+  "author": "Ayamba Ojong",
+  "license": "MIT"
+}
